@@ -43,3 +43,5 @@ const UserSchema = new mongoose.Schema({
     preferences: Object
   }
 });
+
+export const User = mongoose.model('User', UserSchema);
