@@ -11,6 +11,8 @@ app.use(passport.initialize());
 
 // Custom Middlewares
 app.use('/api/auth', authRoutes);
+// app.use('/api/tutorials');
+// app.use('/api/quizzes');
 
 app.listen(PORT, ()=>{
   console.log(`Listening At: ${PORT}`)

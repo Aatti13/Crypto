@@ -30,3 +30,8 @@ export class InvlidTokenError extends CustomError {
   }
 }
 
+export class TwoFactorHandler extends CustomError {
+  constructor(message = '2FA setup error'){
+    super(message, 400, 'AUTH_EN_007');
+  }
+}
