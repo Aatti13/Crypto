@@ -59,3 +59,10 @@ export const verify2FA = (req, res)=>{
   }
 }
 
+export const securityQuestions = (req, res)=>{
+  try{
+
+  }catch(error){
+    res.status(502).json()
+  }
+}

@@ -1,6 +1,6 @@
 # Use-Cases (Back-End):
 
-# Backend Use Cases for Crypto Exchange Web App
+## Backend Use Cases for Crypto Exchange Web App
 
 ---
 
@@ -146,3 +146,4 @@ Centralized error handling across all routes and APIs. Includes logging for crit
 - **WebSockets/Socket.IO:** Real-time cryptocurrency data and live trading.
 - **Web3.js/Ethers.js:** Blockchain wallet interaction and smart contract execution.
 - **JWT & Argon2.js:** Authentication and security.
+

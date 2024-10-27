@@ -1,4 +1,15 @@
-import mongoose from "mongoose"; 
+import mongoose from "mongoose";
+
+const securityQuestionSchema = new mongoose.Schema({
+  question: { 
+    type: String, 
+    required: true 
+  },
+  answer: { 
+    type: String, 
+    required: true 
+  }
+});
 
 const UserSchema = new mongoose.Schema({
   email: {
@@ -36,6 +47,24 @@ const UserSchema = new mongoose.Schema({
   isLocked: {
     type: Boolean,
     default: false
+  },
+  securityQuestions: {
+    type: [securityQuestionSchema],
+    validate: [
+      {
+        validator: function(questions) {
+          return questions.length <= 3;
+        },
+        message: 'Cannot have more than 3 security questions'
+      },
+      {
+        validator: function(questions) {
+          const questionTexts = questions.map(q => q.question);
+          return new Set(questionTexts).size === questionTexts.length;
+        },
+        message: 'Cannot have duplicate security questions'
+      }
+    ]
   },
   profile: {
     phoneNumber: String,

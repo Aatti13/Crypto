@@ -2,3 +2,6 @@ node_modules
 package.json
 package-lock.json
 vite.config.js
+tutorials.js
+.env
+.env.local
