@@ -1,6 +1,6 @@
 import { User } from "../models/User.js";
 import { Router } from "express";
-import { register, login, resetPassword, setup2FA, verify2FA } from "../controllers/authController.js";
+import { register, login, resetPassword, setup2FA, verify2FA, securityQuestions } from "../controllers/authController.js";
 
 const router = Router();
 
@@ -22,6 +22,8 @@ router.put('/reset-password', resetPassword);
 router.post('/setup-2fa', setup2FA);
 router.post('/verify-2fa', verify2FA);
 
-// 5. 
+// 5. Security Questions
+
+router.get('/security-questions', securityQuestions);
 
 export default router;

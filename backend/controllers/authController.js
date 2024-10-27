@@ -1,5 +1,6 @@
 // IMPORTS
 import mongoose from "mongoose";
+import { PREDEFINED_SECURITY_QUESTIONS } from "../constants/securityQuestions.js";
 // import rateLimit from 'express-rate-limiter';
 
 // ------------------------------------------------------------
@@ -59,10 +60,11 @@ export const verify2FA = (req, res)=>{
   }
 }
 
+// Security Questions
 export const securityQuestions = (req, res)=>{
   try{
-
+    res.status(201).json({questions: PREDEFINED_SECURITY_QUESTIONS});
   }catch(error){
-    res.status(502).json()
+    res.status(502).json({message: error.message});
   }
 }
