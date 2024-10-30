@@ -12,6 +12,12 @@ import { config } from "dotenv";
 
 // ------------------------------------------------------------------------------
 
+config();
+
+const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+
+// ------------------------------------------------------------------------------
+
 const generateToken = (userId) => {
   return jwt.sign({ id: userId }, process.env.JWT_SECRET, {
     expiresIn: '24h',

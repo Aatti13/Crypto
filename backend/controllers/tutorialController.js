@@ -1,3 +1,4 @@
+import { UserProgress } from "../../archives/tutorials.js";
 import { Tutorial } from "../models/Tutorial.js";
 
 export class tutorialController {
@@ -21,7 +22,38 @@ export class tutorialController {
     const tutorial = await Tutorial.findById(req.params.id).populate('prerequisites', 'title');
 
     if(!tutorial){
-      return res.status(401).json()
+      return res.status(401).json({message: 'Tutorial Not Found'});
     }
+
+    res.json(tutorial);
   }
+
+  static async checkPrerequisites(req, res) {
+    const tutorial = await Tutorial.findById(req.params.id).populate('prerequisites');
+
+    if(!tutorial){
+      return res.status(404).json({message: 'Tutorial Not found'});
+    }
+
+    const prerequisiteIds = tutorial.prerequisites.map(p=>p._id);
+    const completedPrereqs = await UserProgress.find({
+      user: req.user._id,
+      tutorial: {$in: prerequisiteIds},
+      completed: true
+    });
+
+    const missingPrereqs = tutorial.prerequisites.filter(prereq =>
+      !completedPrereqs.some(cp=>cp.tutorial.equals(prereq._id))
+    );
+
+    res.status(201).json({
+      canStart: missingPrereqs.length === 0,
+      missingPrerequisites: missingPrereqs.map(p => ({
+        id: p._id,
+        title: p.title
+      }))
+    });
+  }
+
+  
 }

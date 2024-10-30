@@ -1,6 +1,6 @@
 import { User } from "../models/User.js";
 import { Router } from "express";
-import { register, login, resetPassword, setup2FA, verify2FA, securityQuestions } from "../controllers/authController.js";
+import { register, login, googleLogin, resetPasswordRequest, resetPassword, setup2FA, verify2FA, securityQuestions } from "../controllers/authController.js";
 
 const router = Router();
 
@@ -13,6 +13,7 @@ router.post('/register', register);
 router.post('/login', login);
 
 // 3. Update
+router.post('/reset-password-request', resetPasswordRequest);
 router.put('/reset-password', resetPassword);
 
 /* 4. 2FA (Two-Factor Authentication) 
