@@ -5,3 +5,4 @@ vite.config.js
 tutorials.js
 .env
 .env.local
+authTest.js
